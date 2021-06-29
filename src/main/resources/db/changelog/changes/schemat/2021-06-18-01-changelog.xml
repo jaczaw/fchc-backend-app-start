@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd">
+
+    <!--<changeSet id="Tworzenie schematu 2" author="jaczaw">
+        <sqlFile path="db/changelog/changes/schemat/create-schema-sql-ver002.sql"/>
+    </changeSet>-->
+    <changeSet id="Poprawa tworzenie schematu 1" author="jaczaw">
+        <sqlFile path="db/changelog/changes/schemat/create-schema-sql-ver003.sql"/>
+    </changeSet>
+     <changeSet id="Wczytanie danych MS2018" author="jaczaw">
+        <sqlFile path="db/changelog/changes/data/insert-data-init-ver001.sql"/>
+    </changeSet>
+
+
+</databaseChangeLog>

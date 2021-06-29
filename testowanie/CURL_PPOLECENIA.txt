@@ -1,0 +1,24 @@
+{
+  "page": {
+    "size": 20,
+    "totalElements": 0,
+    "totalPages": 0,
+    "number": 0
+  }
+}
+
+curl -I http://localhost:8181/api/kluby
+curl -i -X HEAD http://localhost:8181/api/kluby
+
+curl -i -X POST -H -d username=user -d password=cca17a90-9d33-4b1c-9ccc-0b9b68a3e9ae -d '{"nazwa":"Read the Pro Spring Boot 2nd Edition Book"}' http://localhost:8181/api/kluby
+
+
+curl -i -X POST -H "Content-Type: application/json" -d '{"nazwa":"Zespol 11"}' http://localhost:8181/api/kluby
+curl -i -X POST -H "Content-Type: application/json" -d '{"nazwa":"Zespol 12"}' http://localhost:8181/api/kluby
+curl -i -X POST -H "Content-Type: application/json" -d '{"nazwa":"Zespol 13"}' http://localhost:8181/api/kluby
+curl -i -X POST -H "Content-Type: application/json" -d '{"nazwa":"Zespol 14"}' http://localhost:8181/api/kluby
+curl -i -X POST -H "Content-Type: application/json" -d '{"nazwa":"Zespol 15"}' http://localhost:8181/api/kluby
+curl -i -X POST -H "Content-Type: application/json" -d '{"nazwa":"Zespol 16"}' http://localhost:8181/api/kluby
+curl -i -X POST -H "Content-Type: application/json" -d '{"nazwa":"Zespol 17"}' http://localhost:8181/api/kluby
+curl -i -X POST -H "Content-Type: application/json" -d '{"nazwa":"Zespol 18"}' http://localhost:8181/api/kluby
+																  

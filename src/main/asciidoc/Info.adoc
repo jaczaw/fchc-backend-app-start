@@ -1,0 +1,12 @@
+= Aplikacja zarzadzanie rozgrywkami piłkarskimi
+
+Aplikacja stworzona do zarzadzanie rozgrywkaimi mistrzostw świata w 2018r..
+
+== Uruchamianie aplikacji
+
+Urochom cmd i wpisz poniższe polecenie
+
+ $ java -jar D:\PROGRAMOWANIE\PROJEKTY\fchc-app\fchc-backend-app\target\fchc-backend-app-0.0.1.jar
+
+
+Otwzórz plik  _d:\PROGRAMOWANIE\PROJEKTY\fchc-app\fchc-backend-app\target\doc\Info.html_ w dowolnej przegladarce HTML

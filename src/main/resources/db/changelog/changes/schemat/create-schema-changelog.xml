@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd">
+
+    <changeSet id="Tworzenie schematu" author="jaczaw">
+        <sqlFile path="db/changelog/changes/schemat/create-schema-sql-ver001.sql"/>
+    </changeSet>
+    <changeSet id="Wczytanie przykladiowych danych" author="jaczaw">
+        <sqlFile path="db/changelog/changes/data/insert-data-example.sql"/>
+    </changeSet>
+</databaseChangeLog>

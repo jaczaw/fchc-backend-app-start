@@ -1,0 +1,20 @@
+#spring:
+#  profiles:
+#    active: @spring.profiles.active@
+
+
+#security:
+#  ignored: /**
+
+
+spring:
+  liquibase:
+    change-log: classpath:/db/changelog/changelog-master.xml
+server:
+  port : 8181
+app:
+  datasource:
+    jdbc-url: jdbc:postgresql://localhost:5432/test2
+    username: postgres
+    password: postgres
+    pool-size: 30
