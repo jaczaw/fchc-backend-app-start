@@ -21,8 +21,8 @@ import javax.persistence.Transient;
 public class Klub {
     @Column(name = "ID", nullable = false)
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_KLUB_ID")
-    @SequenceGenerator(name = "SEQ_KLUB_ID", sequenceName = "SEQ_KLUB_ID", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "GEN_SEQ_KLUB_ID")
+    @SequenceGenerator(name = "GEN_SEQ_KLUB_ID", sequenceName = "SEQ_KLUB_ID", allocationSize = 1)
     private Long id;
 
     @Column(name = "NAZWA", nullable = false)
