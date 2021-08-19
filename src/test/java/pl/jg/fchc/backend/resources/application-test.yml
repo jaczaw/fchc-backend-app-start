@@ -1,21 +1,17 @@
 #spring:
 #  profiles:
 #    active: @spring.profiles.active@
-
-
-#security:
-#  ignored: /**
-
-logging:
-  file:
-    name: my.log
 spring:
   liquibase:
     change-log: classpath:/db/changelog/changelog-master.xml
     enabled: true
-  output:
-    ansi:
-      enabled: ALWAYS
+  datasource:
+    url: jdbc:postgresql://localhost:5432/test
+    username: postgres
+    password: sekret
+    pool-size: 30
+    spring:
+      jpa:
 server:
   port : 8181
 app:
@@ -24,3 +20,4 @@ app:
     username: postgres
     password: sekret
     pool-size: 30
+
