@@ -1,10 +1,17 @@
 #spring:
 #  profiles:
 #    active: @spring.profiles.active@
+
+
 spring:
   liquibase:
     change-log: classpath:/db/changelog/changelog-master.xml
     enabled: true
+  datasource:
+    url: jdbc:postgresql://localhost:5432/test
+    username: postgres
+    password: sekret
+    pool-size: 30
 server:
   port : 8181
 app:
@@ -13,3 +20,4 @@ app:
     username: postgres
     password: sekret
     pool-size: 30
+

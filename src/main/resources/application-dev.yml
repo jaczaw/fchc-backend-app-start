@@ -10,5 +10,5 @@ app:
   datasource:
     jdbc-url: jdbc:postgresql://localhost:5432/dev
     username: postgres
-    password: postgres
+    password: secret
     pool-size: 30
