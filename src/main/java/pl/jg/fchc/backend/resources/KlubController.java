@@ -22,7 +22,6 @@ import pl.jg.fchc.backend.domain.service.KlubService;
 
 import javax.validation.Valid;
 import java.util.List;
-import java.util.Optional;
 
 @Slf4j
 @RestController
@@ -45,9 +44,11 @@ public class KlubController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Klub> getKlubById(@PathVariable Long id){
-        Optional<Klub> klub = klubService.findKlubById(id);
-        return klub.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+    public ResponseEntity<KlubDTO> getKlubById(@PathVariable Long id){
+
+        Klub klub = klubService.findKlubById(id);
+        KlubDTO klubDTO = KlubMapper.MAPPER.fromKlub(klub);
+        return ResponseEntity.ok(klubDTO);
     }
 
     @GetMapping("/nazwa/{nazwa}")

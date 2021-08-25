@@ -16,6 +16,12 @@ spring:
   output:
     ansi:
       enabled: ALWAYS
+  security:
+    user:
+      name: user
+      password: user
+  jpa:
+    open-in-view: false
 server:
   port : 8181
 app:
