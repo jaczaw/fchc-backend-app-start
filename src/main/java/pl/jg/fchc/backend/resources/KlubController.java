@@ -26,7 +26,8 @@ import java.util.List;
 @Slf4j
 @RestController
 @RequestMapping("/api/kluby")
-@CrossOrigin("*")
+//@CrossOrigin("*")
+@CrossOrigin(origins = "http://localhost:8181")
 public class KlubController {
 
     private final KlubService klubService;
