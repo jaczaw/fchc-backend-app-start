@@ -20,7 +20,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/zawodnicy")
-@CrossOrigin("*")
+@CrossOrigin(origins = "http://localhost:8181") //@CrossOrigin("*") bez ograniczen CROS
 public class ZawodnikController {
 
     private ZawodnikService zawodnikService;
