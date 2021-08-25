@@ -43,7 +43,7 @@ class KlubRepositoryTest {
     }
 
     @Test
-    public void testKlubNativQuery() {
+    void testKlubNativQuery() {
 
         int expected = klubRepository.findAll().size();
 
@@ -53,7 +53,7 @@ class KlubRepositoryTest {
     }
 
     @Test
-    public void testKlubRepository(){
+    void testKlubRepository(){
         Klub klub = new Klub();
         klub.setNazwa("Klub Testowy 1");
         klubRepository.save(klub);

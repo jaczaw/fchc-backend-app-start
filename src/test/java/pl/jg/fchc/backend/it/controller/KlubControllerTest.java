@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 @Slf4j
-public class KlubControllerTest extends AbstractIntegrationTest {
+class KlubControllerTest extends AbstractIntegrationTest {
 
     @Autowired
     TestRestTemplate restTemplate;
@@ -22,7 +22,7 @@ public class KlubControllerTest extends AbstractIntegrationTest {
 
 
     @Test
-    public void simpleJPATest() {
+    void simpleJPATest() {
         Klub klub = new Klub();
         klub.setNazwa("Moj Klub");
         klub.setTemp("test");

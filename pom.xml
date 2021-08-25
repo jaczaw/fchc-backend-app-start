@@ -20,6 +20,8 @@
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
 		<testcontainers.version>1.15.3</testcontainers.version>
+		<sonar.organization>jaczaw</sonar.organization>
+		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
 
 	</properties>
 	<dependencies>

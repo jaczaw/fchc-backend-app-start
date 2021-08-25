@@ -15,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 @Slf4j
 @Testcontainers
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class AplicationDatabaseIntegrationTest {
+class AplicationDatabaseIntegrationTest {
 
     @Container
     public static PostgreSQLContainer postgreSQLContainer = new PostgreSQLContainer("postgres:9.6.12")
@@ -30,7 +30,7 @@ public class AplicationDatabaseIntegrationTest {
     }
 
     @Test
-    public void contextLoads() {
+    void contextLoads() {
         log.info("Kontekst załadowany");
         assertNotNull(postgreSQLContainer);
     }
