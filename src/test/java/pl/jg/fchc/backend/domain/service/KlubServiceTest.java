@@ -1,13 +1,13 @@
 package pl.jg.fchc.backend.domain.service;
 
 import lombok.extern.slf4j.Slf4j;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ActiveProfiles;
+import pl.jg.fchc.backend.domain.exception.KlubNotFoundException;
 import pl.jg.fchc.backend.domain.model.entity.Klub;
 import pl.jg.fchc.backend.domain.repository.KlubRepository;
 
@@ -21,10 +21,10 @@ import static org.mockito.Mockito.when;
 @ActiveProfiles("test")
 class KlubServiceTest {
 
-    @Autowired
+    @MockBean
     private KlubService klubService;
 
-    @MockBean
+    @Autowired
     private KlubRepository klubRepository;
 
 
@@ -37,15 +37,18 @@ class KlubServiceTest {
         k.setId(1L);
         k.setNazwa("Lada");
         //then
-        when(klubService.findKlubById(1L)).thenReturn(Optional.of(k));
-        when(klubRepository.findById(1L)).thenReturn(Optional.of(k));
-        Optional<Klub> resultService = klubService.findKlubById(1L);
+        when(klubService.findKlubById(1L)).thenReturn(k);
+        Klub resultService = klubService.findKlubById(1L);
         Optional<Klub> resultRepository = klubRepository.findById(1L);
-        log.info(String.format("TEST:klubService.findKlubById(1L) = %s",resultService.get().getNazwa()));
-        log.info(String.format("TEST:klubRepository.findById(1L) = %s",resultService.get().getId()));
-
+        log.info(String.format("TEST:klubService.findKlubById(1L) = %s",resultService.getNazwa()));
+        log.info(String.format("TEST:klubRepository.findById(1L) = %s",resultRepository.map(Klub::getNazwa).orElse("Brak Klubu")));
         // expected
-        assertEquals(1L,resultService.get().getId());
-        assertEquals("Lada",resultRepository.get().getNazwa());
+
+        assertEquals("Lada",resultService.getNazwa());
+        assertEquals("FC Köln (GER)",
+                resultRepository
+                .map(Klub::getNazwa)
+                .orElseThrow(()-> new KlubNotFoundException(String.format("Brak Klubu o identyfikatorze "))));
+
     }
 }
