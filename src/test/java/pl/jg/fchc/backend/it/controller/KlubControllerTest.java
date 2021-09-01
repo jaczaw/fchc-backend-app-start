@@ -2,6 +2,7 @@ package pl.jg.fchc.backend.it.controller;
 
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.web.client.TestRestTemplate;
@@ -22,6 +23,7 @@ class KlubControllerTest extends AbstractIntegrationTest {
 
 
     @Test
+    @Disabled
     void simpleJPATest() {
         Klub klub = new Klub();
         klub.setNazwa("Moj Klub");

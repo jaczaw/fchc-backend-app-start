@@ -1,4 +1,4 @@
-package pl.jg.fchc.backend.resources;
+package pl.jg.fchc.backend.controllers;
 
 import org.javers.core.Javers;
 import org.javers.core.diff.Change;

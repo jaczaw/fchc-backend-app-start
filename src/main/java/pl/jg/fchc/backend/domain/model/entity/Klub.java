@@ -1,5 +1,6 @@
 package pl.jg.fchc.backend.domain.model.entity;
 
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
@@ -26,6 +27,7 @@ public class Klub {
     private Long id;
 
     @Column(name = "NAZWA", nullable = false)
+    @ApiModelProperty(value = "Nazwa klubu")
     private String nazwa;
 
     @Transient

@@ -1,4 +1,4 @@
-package pl.jg.fchc.backend.resources;
+package pl.jg.fchc.backend.controllers;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,7 +36,7 @@ public class ZawodnikController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Zawodnik> getKlubById(@PathVariable Long id){
+    public ResponseEntity<Zawodnik> getZawodnikById(@PathVariable Long id){
         Optional<Zawodnik> zawodnik = zawodnikService.findZawodnikById(id);
         return zawodnik.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }

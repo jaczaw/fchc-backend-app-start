@@ -1,4 +1,4 @@
-package pl.jg.fchc.backend.resources;
+package pl.jg.fchc.backend.controllers;
 
 
 import lombok.extern.slf4j.Slf4j;
