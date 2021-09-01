@@ -9,7 +9,7 @@ logging:
     name: my.log
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/dev
+    url: jdbc:postgresql://localhost:5432/test
     username: postgres
     password: sekret
   profiles:
@@ -33,7 +33,7 @@ server:
   port : 8181
 app:
   datasource:
-    jdbc-url: jdbc:postgresql://localhost:5432/dev
+    jdbc-url: jdbc:postgresql://localhost:5432/test
     username: postgres
     password: sekret
     pool-size: 30
@@ -44,8 +44,8 @@ jwt:
   secret: asdsalqrk1232115dfas@!#!@sds # niezapomnij podmienić na produkcji
 
 #actuator ujawnić wszystkie dostępne punkty końcowe Spring Boot Actuator.
-management:
-  endpoints:
-    web:
-      exposure:
-        include: '*'
+#management:
+#  endpoints:
+#    web:
+#      exposure:
+#        include: '*'
