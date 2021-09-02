@@ -1,30 +1,30 @@
 package pl.jg.fchc.backend.domain.model.entity;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-import java.sql.Date;
 import java.time.LocalDate;
 
-@Table(name = "ZAWODNIK")
-@Data
-@Entity
-//@Getter
-//@Setter
-@RequiredArgsConstructor
+@NoArgsConstructor
 @AllArgsConstructor
-//@NoArgsConstructor
+@Builder
+@Setter
+@Getter
+@ToString
+@Table(name = "ZAWODNIK")
+@Entity
 public class Zawodnik {
     @Column(name = "ID", nullable = false)
     @Id
@@ -40,5 +40,9 @@ public class Zawodnik {
 
     @Column(name = "DATA_URODZENIA")
     private LocalDate dataUrodzenia;
+
+    //@JoinColumn(name = "klub_id", referencedColumnName = "id")
+    @ManyToOne
+    private Klub klub;
 
 }
