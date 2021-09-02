@@ -40,7 +40,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.jdbcAuthentication().dataSource(dataSource);
+        auth.jdbcAuthentication().dataSource(dataSource); //TODO: passworEncoder aby uniknąć brute force attacks
     }
 
     @Override
@@ -49,9 +49,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         http
                 .authorizeRequests()
-                .antMatchers("/").permitAll()
+                .antMatchers("/api/**").permitAll()
                 .antMatchers("/swagger-ui.html").permitAll()
                 .antMatchers("/swagger-ui/**").permitAll()
+                .antMatchers("/error/**").permitAll()
+                .antMatchers("/audit/**").permitAll()
                 .antMatchers("/actuator/**").permitAll()
                 .antMatchers("/v2/api-docs").permitAll()
                 .antMatchers("/webjars/**").permitAll()
@@ -82,12 +84,5 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return new JdbcUserDetailsManager(dataSource);
     }
 
-//    @Override
-//    protected void configure(AuthenticationManagerBuilder builder) throws Exception {
-//        builder.inMemoryAuthentication()
-//                .withUser("user")
-//                .password("{noop}password")
-//                .roles("USER");
-//    }
 
 }
