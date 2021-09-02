@@ -8,5 +8,8 @@
     <changeSet id="Aktualizacja schematu - USER table" author="jaczaw">
         <sqlFile path="db/changelog/changes/schemat/update-schema-sql-002.sql"/>
     </changeSet>
+    <changeSet id="Aktualizacja schematu - Klub table" author="jaczaw">
+        <sqlFile path="db/changelog/changes/schemat/update-schema-sql-003.sql"/>
+    </changeSet>
 
 </databaseChangeLog>
