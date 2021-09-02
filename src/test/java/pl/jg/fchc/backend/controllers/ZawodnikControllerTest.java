@@ -63,16 +63,16 @@ class ZawodnikControllerTest {
     void powinienZwrocicInnegoPilkarzy() throws Exception{
 
         //given
-        ZawodnikDTO nowyZawodnikDTO = ZawodnikDTO.builder()
+        Zawodnik nowyZawodnik = Zawodnik.builder()
                 .id(1L)
                 .nazwaZawodnika("Zawislak Jacek")
                 .dataUrodzenia(LocalDate.of(1974,12,14))
                 .wzrost(189)
                 .build();
-        Zawodnik zawodnikEntity = MAPPER.toZawodnik(nowyZawodnikDTO);
+
 
         //when
-        when(zawodnikService.findZawodnikById(1L)).thenReturn(Optional.of(zawodnikEntity));
+        when(zawodnikService.findZawodnikById(1L)).thenReturn(Optional.of(nowyZawodnik));
 
         MvcResult mvcResult = mockMvc.perform(get("/api/zawodnicy/1"))
                 .andDo(print())
@@ -82,10 +82,10 @@ class ZawodnikControllerTest {
         //then
         Zawodnik zawodnik = objectMapper.readValue(mvcResult.getResponse().getContentAsString(),Zawodnik.class);
         assertThat(zawodnik).isNotNull();
-        assertThat(zawodnik.getId()).isEqualTo(zawodnikEntity.getId());
+        assertThat(zawodnik.getId()).isEqualTo(nowyZawodnik.getId());
         assertThat(zawodnik.getNazwaZawodnika()).isEqualTo("Zawislak Jacek");
         assertThat(zawodnik.getWzrost()).isEqualTo(189);
-        log.info(String.format("zawodnik.getId(): %d   zawodnikEntity.getId(): %d",zawodnik.getId(), zawodnikEntity.getId()));
+        log.info(String.format("zawodnik.getId(): %d   zawodnikEntity.getId(): %d",zawodnik.getId(), nowyZawodnik.getId()));
     }
 
     @Test
@@ -94,8 +94,12 @@ class ZawodnikControllerTest {
         //"id":499,"nazwaZawodnika":"BLASZCZYKOWSKI Jakub","wzrost":175,"dataUrodzenia":"1985-12-14"
 
         when(zawodnikService.findZawodnikById(1L))
-                .thenReturn(Optional.of(new Zawodnik(1L,"BLASZCZYKOWSKI Jakub",175, LocalDate.of(1985,12,14)))
-                );
+                .thenReturn(Optional.of(Zawodnik.builder()
+                        .id(1L)
+                        .nazwaZawodnika("BLASZCZYKOWSKI Jakub")
+                        .wzrost(175)
+                        .dataUrodzenia(LocalDate.of(1985, 12, 14))
+                        .build()));
         log.info("powinienZwrocicWybranegoPilkarza");
         log.info("\"id\":1,\"nazwaZawodnika\":\"BLASZCZYKOWSKI Jakub\",\"wzrost\":175,\"dataUrodzenia\":\"1985-12-14");
 

@@ -38,7 +38,7 @@ class KlubRepositoryTest {
         klub1.setNazwa("Porazka Topulcza");
         klub1.setTemp("temp1");
 
-        log.info(String.format("KONFIGURACJA: %s",AutoConfigureTestDatabase.Replace.values()));
+        log.info(String.format("KONFIGURACJA: %s",Replace.values()));
 
     }
 

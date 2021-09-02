@@ -1,7 +1,8 @@
 package pl.jg.fchc.backend.controllers;
 
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,22 +18,18 @@ import pl.jg.fchc.backend.domain.service.ZawodnikService;
 import java.util.List;
 import java.util.Optional;
 
-
+@Slf4j
+@RequiredArgsConstructor
 @RestController
 @RequestMapping("/api/zawodnicy")
 @CrossOrigin("*")
 public class ZawodnikController {
 
-    private ZawodnikService zawodnikService;
-
-    @Autowired
-    public ZawodnikController(ZawodnikService zawodnikService) {
-        this.zawodnikService = zawodnikService;
-    }
+    private final ZawodnikService zawodnikService;
 
     @GetMapping()
-    public ResponseEntity<List<Zawodnik>> getZawodnik(){
-        return ResponseEntity.ok(zawodnikService.getAllZawodnik());
+    public List<ZawodnikDTO> getZawodnicy(){
+        return zawodnikService.getAll();
     }
 
     @GetMapping("/{id}")
