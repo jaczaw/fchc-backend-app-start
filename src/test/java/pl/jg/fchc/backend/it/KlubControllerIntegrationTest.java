@@ -10,10 +10,9 @@ import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
-import pl.jg.fchc.backend.domain.dto.KlubDTO;
-import pl.jg.fchc.backend.domain.dto.KlubViewDTO;
+import pl.jg.fchc.backend.domain.dto.KlubDto;
+import pl.jg.fchc.backend.domain.dto.KlubViewDto;
 import pl.jg.fchc.backend.domain.exception.KlubNotFoundException;
-import pl.jg.fchc.backend.domain.model.entity.Klub;
 import pl.jg.fchc.backend.domain.service.KlubService;
 
 import java.util.List;
@@ -81,7 +80,7 @@ class KlubControllerIntegrationTest {
 
     @Test
     void shouldReturnAllKlubyForUnauthenticatedUser() throws Exception {
-        KlubViewDTO klub = KlubViewDTO.builder()
+        KlubViewDto klub = KlubViewDto.builder()
                 .id(1L)
                 .nazwa("FC TOPULCZA")
                 .build();
@@ -121,7 +120,7 @@ class KlubControllerIntegrationTest {
                 //.andExpect(header().exists("Location"))
                 //.andExpect(header().string("Location", Matchers.containsString("Porażka Topulcza")));
 
-        verify(klubService).insert(any(KlubDTO.class));
+        verify(klubService).insert(any(KlubDto.class));
     }
 
 

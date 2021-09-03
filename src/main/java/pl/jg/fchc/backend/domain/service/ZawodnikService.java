@@ -2,8 +2,8 @@ package pl.jg.fchc.backend.domain.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import pl.jg.fchc.backend.domain.dto.ZawodnikDTO;
-import pl.jg.fchc.backend.domain.dto.mapper.ZawodnikMapper;
+import pl.jg.fchc.backend.domain.dto.ZawodnikDto;
+import pl.jg.fchc.backend.domain.dto.mappers.ZawodnikMapper;
 import pl.jg.fchc.backend.domain.model.entity.Zawodnik;
 import pl.jg.fchc.backend.domain.repository.ZawodnikRepository;
 
@@ -19,16 +19,16 @@ public class ZawodnikService {
     private final ZawodnikRepository zawodnikRepository;
     private final ZawodnikMapper mapper;
 
-    public List<ZawodnikDTO> getAll() {
+    public List<ZawodnikDto> getAll() {
         return zawodnikRepository
                 .findAll()
                 .stream()
-                .map(mapper::toDTO)
+                .map(mapper::zawodnikToZawodnikDto)
                 .collect(Collectors.toList());
     }
 
-    public void addZawodnik(ZawodnikDTO zawodnikDTO){
-        zawodnikRepository.save(ZawodnikMapper.MAPPER.toEntity(zawodnikDTO));
+    public void addZawodnik(ZawodnikDto zawodnikDTO){
+        zawodnikRepository.save(ZawodnikMapper.MAPPER.zawodnikDtoToZawodnik(zawodnikDTO));
     }
 
     public Optional<Zawodnik> findZawodnikById(Long id){

@@ -8,9 +8,13 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.http.ResponseEntity;
-import org.springframework.test.context.ActiveProfiles;
-import pl.jg.fchc.backend.domain.dto.KlubDTO;
+import pl.jg.fchc.backend.domain.dto.KlubDto;
 
+
+import java.util.List;
+import java.util.Objects;
+
+import static org.assertj.core.api.Java6Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @Slf4j
@@ -25,16 +29,18 @@ class FchcBackendApplicationTests {
 	private Integer port;
 
 	@Test
-	@Disabled
 	void contextLoads() {
-		ResponseEntity<KlubDTO> actuatorResult =
-				this.testRestTemplate.getForEntity("/api/kluby/2", KlubDTO.class);
-		log.info(String.format("status: %d wartosc: %s",
-				actuatorResult.getStatusCodeValue(),
-				actuatorResult.getBody().toString()));
+		ResponseEntity<KlubDto> actuatorResult =
+				this.testRestTemplate.getForEntity("/api/kluby/2", KlubDto.class);
+		if(Objects.nonNull(actuatorResult.getBody())){
+			log.info(String.format("status: %d wartosc: %s",
+					actuatorResult.getStatusCodeValue(),
+					actuatorResult.getBody().toString()));
+		}
 
-		assertEquals(200, actuatorResult.getStatusCodeValue());
-		assertEquals("Aalborg BK (DEN)",actuatorResult.getBody().getNazwa());
+		assertThat(actuatorResult.getBody()).isNotNull();
+		assertThat(actuatorResult.getStatusCodeValue()).isEqualTo(200);
+		assertThat(actuatorResult.getBody().getNazwa()).isEqualTo("Aalborg BK (DEN)");
 	}
 
 

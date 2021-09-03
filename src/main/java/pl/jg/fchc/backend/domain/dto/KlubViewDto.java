@@ -4,15 +4,13 @@ import lombok.Builder;
 import lombok.Data;
 
 import javax.persistence.Transient;
-import java.util.List;
 
 @Data
 @Builder
-public class KlubDTO {
+public class KlubViewDto {
 
     private Long id;
     private String nazwa;
-    private List<ZawodnikDTO> zawodnicyList;
     @Transient
     private String temp;
 }

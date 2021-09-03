@@ -4,9 +4,9 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import pl.jg.fchc.backend.domain.dto.KlubDTO;
-import pl.jg.fchc.backend.domain.dto.KlubViewDTO;
-import pl.jg.fchc.backend.domain.dto.mapper.KlubMapper;
+import pl.jg.fchc.backend.domain.dto.KlubDto;
+import pl.jg.fchc.backend.domain.dto.KlubViewDto;
+import pl.jg.fchc.backend.domain.dto.mappers.KlubMapper;
 import pl.jg.fchc.backend.domain.exception.KlubNotFoundException;
 import pl.jg.fchc.backend.domain.model.entity.Klub;
 import pl.jg.fchc.backend.domain.repository.KlubRepository;
@@ -24,47 +24,47 @@ public class KlubService {
     private final KlubMapper mapper;
 
     @Transactional(readOnly = true)
-    public List<KlubViewDTO> getAll() {
+    public List<KlubViewDto> getAll() {
         return klubRepository
                 .findAll()
                 .stream()
-                .map(mapper::toViewDTO)
+                .map(mapper::klubToKlubViewDto)
                 .collect(Collectors.toList());
     }
 
-    public KlubDTO insert(KlubDTO dto) {
-        Klub klub = mapper.toEntity(dto);
+    public KlubDto insert(KlubDto dto) {
+        Klub klub = mapper.klubDtoToKlub(dto);
         log.info(String.format("Serwis: Insert Klub: %s",klub.toString()));
-        return mapper.toDTO(klubRepository.save(klub));
+        return mapper.klubToKlubDto(klubRepository.save(klub));
     }
 
     @Transactional(readOnly = true)
-    public Optional<KlubDTO> findById(Long id) {
+    public Optional<KlubDto> findById(Long id) {
         return klubRepository
                 .findById(id)
-                .map(mapper::toDTO);
+                .map(mapper::klubToKlubDto);
     }
 
     @Transactional(readOnly = true)
-    public Optional<KlubDTO> getKlubByNazwa(String nazwa) {
+    public Optional<KlubDto> getKlubByNazwa(String nazwa) {
         return klubRepository.findAll().stream()
                 .filter(klub -> klub.getNazwa().equals(nazwa))
-                .map(mapper::toDTO)
+                .map(mapper::klubToKlubDto)
                 .findFirst();
     }
 
-    public KlubDTO update(Long id, KlubDTO newDto) {
+    public KlubDto update(Long id, KlubDto newDto) {
         return klubRepository.findById(id)
                 .map(klub -> {
                     klub.setNazwa(newDto.getNazwa());
-                    return mapper.toDTO(klubRepository.save(klub));
+                    return mapper.klubToKlubDto(klubRepository.save(klub));
                 })
                 .orElseThrow(() -> new KlubNotFoundException(String.format("UPDATE - Brak Klubu o takim identyfikatorze %d", id)));
     }
 
-    public KlubDTO delete (Long id){
-        KlubDTO klubDTO = klubRepository.findById(id)
-                .map(mapper::toDTO)
+    public KlubDto delete (Long id){
+        KlubDto klubDTO = klubRepository.findById(id)
+                .map(mapper::klubToKlubDto)
                 .orElseThrow(() -> new KlubNotFoundException(String.format("DELETE - Brak Klubu o takim identyfikatorze %d", id)));
         klubRepository.deleteById(id);
         return klubDTO;
