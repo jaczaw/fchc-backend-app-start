@@ -9,8 +9,8 @@ logging:
     name: my.log
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/dev
-    username: postgres
+    url: jdbc:postgresql://db:5432/dev
+    username: jaczaw
     password: sekret
   profiles:
     active: default #@spring.profiles.active@
@@ -36,8 +36,8 @@ server:
   port : 8181
 app:
   datasource:
-    jdbc-url: jdbc:postgresql://localhost:5432/dev
-    username: postgres
+    jdbc-url: jdbc:postgresql://db:5432/dev
+    username: jaczaw
     password: sekret
     pool-size: 30
 

@@ -1,0 +1,42 @@
+version: '3'
+services:
+  db:
+    container_name: my-local-postgres
+    image: postgres:13.1
+#    image: postgrest/postgrest:latest
+#    environment:
+#      POSTGRES_DATABASE: dev
+#      POSTGRES_USER: postgres
+#      POSTGRES_ROOT_PASSWORD: sekret
+#      POSTGRES_ROOT_HOST: '%'
+#    ports:
+#      - "5432:5432"
+#    restart: always
+    healthcheck:
+      test: [ "CMD", "pg_isready", "-q", "-d", "postgres", "-U", "postgres" ]
+      timeout: 45s
+      interval: 10s
+      retries: 10
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - APP_DB_USER=jaczaw
+      - APP_DB_PASS=sekret
+      - APP_DB_NAME=dev
+    volumes:
+      - ./docker:/docker-entrypoint-initdb.d/
+    ports:
+      - 5432:5432
+
+  app:
+    build: .
+    volumes:
+      - .:/app
+      - ~/.m2:/root/.m2
+    working_dir: /app
+    ports:
+      - 8181:8181
+    command: mvn clean spring-boot:run
+    depends_on:
+      - db
