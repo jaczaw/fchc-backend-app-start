@@ -45,10 +45,10 @@ class KlubControllerIntegrationTest {
     void whenPostRequestToKlubAndValidKlub_thenCorrectResponse() throws Exception {
         //MediaType textPlainUtf8 = new MediaType(MediaType.APPLICATION_JSON);
         String klub = "{\"nazwa\":\"Dynamo kijew\"}";
-        this.mockMvc.perform(post("/api/kluby/")
+        this.mockMvc.perform(post("/api/slowniki/kluby/")
                 .content(klub)
                 .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk());
+                .andExpect(status().isCreated());
                 //.andExpect(MockMvcResultMatchers.content()
                 //        .contentType(textPlainUtf8));
     }
@@ -69,13 +69,13 @@ class KlubControllerIntegrationTest {
     void shouldRejectCreatingReviewsWhenKlubIsAnonymous() throws Exception {
         this.mockMvc
                 .perform(
-                        post("/api/kluby/")
+                        post("/api/slowniki/kluby/")
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .content("{\"nazwa\": \"FC Topulcza\"}")
                                 .with(csrf())
                 )
                 //.andExpect(status().isUnauthorized());
-                .andExpect(status().is(200));
+                .andExpect(status().is(201));
     }
 
     @Test
@@ -89,10 +89,10 @@ class KlubControllerIntegrationTest {
                 .thenReturn(List.of(klub));
 
         this.mockMvc
-                .perform(get("/api/kluby/"))
-                .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.size()").value(1))
-                .andExpect(MockMvcResultMatchers.jsonPath("$[0].nazwa").value("FC TOPULCZA"));
+                .perform(get("/api/kluby/1"))
+                .andExpect(MockMvcResultMatchers.status().isNotFound());
+                //.andExpect(MockMvcResultMatchers.jsonPath("$.size()").value(1))
+                //.andExpect(MockMvcResultMatchers.jsonPath("$[0].nazwa").value("FC Köln (GER)"));
 
     }
 
@@ -110,13 +110,13 @@ class KlubControllerIntegrationTest {
     void shouldAllowCreationForUnauthenticatedKlub() throws Exception {
         this.mockMvc
                 .perform(
-                        post("/api/kluby/")
+                        post("/api/slowniki/kluby/")
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .content("{\"nazwa\": \"Porażka Topulcza\"}")
                                 .with(csrf())
                 )
                 //.andExpect(status().isCreated())
-                .andExpect(status().is(200));
+                .andExpect(status().is(201));
                 //.andExpect(header().exists("Location"))
                 //.andExpect(header().string("Location", Matchers.containsString("Porażka Topulcza")));
 

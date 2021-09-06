@@ -31,7 +31,7 @@ class FchcBackendApplicationTests {
 	@Test
 	void contextLoads() {
 		ResponseEntity<KlubDto> actuatorResult =
-				this.testRestTemplate.getForEntity("/api/kluby/2", KlubDto.class);
+				this.testRestTemplate.getForEntity("/api/slowniki/kluby/2", KlubDto.class);
 		if(Objects.nonNull(actuatorResult.getBody())){
 			log.info(String.format("status: %d wartosc: %s",
 					actuatorResult.getStatusCodeValue(),

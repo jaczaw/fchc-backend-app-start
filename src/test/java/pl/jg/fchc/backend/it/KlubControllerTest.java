@@ -10,16 +10,14 @@ import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.ActiveProfiles;
+import pl.jg.fchc.backend.domain.dto.KlubDto;
 import pl.jg.fchc.backend.domain.model.entity.Klub;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 @Slf4j
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-//@ActiveProfiles("test")
-@WithMockUser
-//@Disabled
-//@AutoConfigureMockMvc
+
 class KlubControllerTest {
 
     @Autowired
@@ -28,10 +26,10 @@ class KlubControllerTest {
 
     @Test
     void sprawdzCzyEndpointDostepny(){
-        ResponseEntity<Klub> actuatorResult =
-                this.testRestTemplate.getForEntity("/api/kluby/1", Klub.class);
+        ResponseEntity<KlubDto> actuatorResult =
+                this.testRestTemplate.getForEntity("/api/slowniki/kluby/1", KlubDto.class);
         log.info(String.format(" Kod statusu: %s",actuatorResult.getStatusCodeValue()));
 
-        assertEquals(401, actuatorResult.getStatusCodeValue());
+        assertEquals(200, actuatorResult.getStatusCodeValue());
     }
 }

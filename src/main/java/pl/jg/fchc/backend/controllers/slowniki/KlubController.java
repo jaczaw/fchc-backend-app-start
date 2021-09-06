@@ -1,4 +1,4 @@
-package pl.jg.fchc.backend.controllers;
+package pl.jg.fchc.backend.controllers.slowniki;
 
 
 import lombok.RequiredArgsConstructor;
@@ -27,7 +27,7 @@ import java.util.Optional;
 @Slf4j
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/api/kluby")
+@RequestMapping("/api/slowniki/kluby")
 @CrossOrigin("*")
 public class KlubController {
 

@@ -32,6 +32,7 @@ public class KlubService {
                 .collect(Collectors.toList());
     }
 
+    @Transactional
     public KlubDto insert(KlubDto dto) {
         Klub klub = mapper.klubDtoToKlub(dto);
         log.info(String.format("Serwis: Insert Klub: %s",klub.toString()));
@@ -53,6 +54,7 @@ public class KlubService {
                 .findFirst();
     }
 
+    @Transactional
     public KlubDto update(Long id, KlubDto newDto) {
         return klubRepository.findById(id)
                 .map(klub -> {
@@ -62,6 +64,7 @@ public class KlubService {
                 .orElseThrow(() -> new KlubNotFoundException(String.format("UPDATE - Brak Klubu o takim identyfikatorze %d", id)));
     }
 
+    @Transactional
     public KlubDto delete (Long id){
         KlubDto klubDTO = klubRepository.findById(id)
                 .map(mapper::klubToKlubDto)

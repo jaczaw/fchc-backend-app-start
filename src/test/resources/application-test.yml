@@ -1,23 +1,53 @@
-#spring:
-#  profiles:
-#    active: @spring.profiles.active@
+
+
+
+#security:
+#  ignored: /**
+
+logging:
+  file:
+    name: my.log
 spring:
-  liquibase:
-    change-log: classpath:/db/changelog/changelog-master.xml
-    enabled: true
   datasource:
     url: jdbc:postgresql://localhost:5432/test
     username: postgres
     password: sekret
-    pool-size: 30
-    spring:
-      jpa:
+#  profiles:
+#    active: test #@spring.profiles.active@
+  liquibase:
+    change-log: classpath:/db/changelog/changelog-master.xml
+    enabled: true
+  output:
+    ansi:
+      enabled: ALWAYS
+  #  security:
+  #    user:
+  #      name: user
+  #      password: user
+  jpa:
+    open-in-view: false
+    hibernate:
+      dll-auto: none
+    #      naming:
+    #        implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyJpaImpl
+    #        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    show-sql: true
 server:
   port : 8181
 app:
   datasource:
-    jdbc-url: jdbc:postgresql://localhost:5432/test
-    username: postgres
+    jdbc-url: postgres
     password: sekret
     pool-size: 30
 
+
+jwt:
+  expirationTime: 3600000 # 1 godzina
+  secret: asdsalqrk1232115dfas@!#!@sds # niezapomnij podmienić na produkcji
+
+#actuator ujawnić wszystkie dostępne punkty końcowe Spring Boot Actuator.
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'

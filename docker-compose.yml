@@ -1,7 +1,7 @@
 version: '3'
 services:
   db:
-    container_name: my-local-postgres
+    container_name: fchc-backend-db-postgres
     image: postgres:13.1
 #    image: postgrest/postgrest:latest
 #    environment:
@@ -28,7 +28,6 @@ services:
       - ./docker:/docker-entrypoint-initdb.d/
     ports:
       - 5432:5432
-
   app:
     build: .
     volumes:
