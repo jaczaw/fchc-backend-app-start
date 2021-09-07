@@ -1,6 +1,6 @@
 version: '3'
 services:
-  db:
+  db-postgres:
     container_name: fchc-backend-db-postgres
     image: postgres:13.1
 #    image: postgrest/postgrest:latest
@@ -28,8 +28,9 @@ services:
       - ./docker:/docker-entrypoint-initdb.d/
     ports:
       - 5432:5432
-  app:
+  fchc-backend-app:
     build: .
+    container_name: fchc-backend-app-spring
     volumes:
       - .:/app
       - ~/.m2:/root/.m2
@@ -38,4 +39,13 @@ services:
       - 8181:8181
     command: mvn clean spring-boot:run
     depends_on:
-      - db
+      - db-postgres
+
+  frontend-app:
+    build: ./frontend
+    container_name: fchc-frontend-app-react
+    ports:
+      - 3000:3000
+    depends_on:
+      - fchc-backend-app
+
